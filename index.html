@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>His Birthday 🌙</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #080d20;
+  --blue: #18264b;
+  --silver: #e2e8ff;
+  --muted: #aebbe3;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  color: var(--silver);
+  background: var(--bg);
+  font-family: 'Noto Serif Bengali', serif;
+  overflow-x: hidden;
+}
+
+#stars {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#musicBtn {
+  position: fixed;
+  z-index: 10;
+  right: 12px;
+  top: 14px;
+  border: 1px solid #6276a9;
+  border-radius: 30px;
+  padding: 10px 14px;
+  background: #121d3b;
+  color: white;
+  font-size: 12px;
+}
+
+.page {
+  display: none;
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  padding: 90px 23px 40px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  animation: appear .8s ease;
+}
+
+.page.active { display: flex; }
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.eyebrow {
+  color: #bdcafa;
+  letter-spacing: 3px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+h1, h2, .english {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+h1 {
+  font-size: clamp(38px, 10vw, 55px);
+  font-weight: 500;
+  line-height: 1.1;
+  margin: 10px 0 28px;
+}
+
+h2 {
+  font-size: 34px;
+  font-weight: 500;
+  margin: 12px 0 25px;
+}
+
+p {
+  font-size: 18px;
+  line-height: 2;
+  max-width: 570px;
+  margin: 10px auto 22px;
+}
+
+.small {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.moon {
+  font-size: 70px;
+  margin-bottom: 18px;
+  text-shadow: 0 0 35px #9fbaff;
+}
+
+button {
+  cursor: pointer;
+  color: white;
+  background: linear-gradient(135deg, #344775, #192645);
+  border: 1px solid #8d9dce;
+  border-radius: 35px;
+  padding: 14px 24px;
+  font-family: 'Noto Serif Bengali', serif;
+  font-size: 16px;
+  margin: 8px;
+  box-shadow: 0 0 20px #172343;
+}
+
+button:active { transform: scale(.97); }
+
+.nav {
+  margin-top: 30px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  max-width: 570px;
+  width: 100%;
+  padding: 24px 20px;
+  border: 1px solid #52658f;
+  border-radius: 22px;
+  background: rgba(20, 31, 62, .8);
+  box-shadow: 0 0 30px rgba(100,130,220,.1);
+}
+
+.heart {
+  font-size: 45px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  50% { transform: scale(1.12); }
+}
+
+#letter {
+  text-align: left;
+  white-space: pre-line;
+  line-height: 2;
+  font-size: 17px;
+}
+
+.hidden { display: none; }
+
+.flower {
+  font-size: 60px;
+  margin: 10px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  50% { transform: translateY(-9px); }
+}
+
+#giftBox {
+  font-size: 90px;
+  cursor: pointer;
+}
+
+footer {
+  color: #9daedb;
+  font-family: 'Cormorant Garamond', serif;
+  margin-top: 30px;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="stars"></canvas>
+
+<button id="musicBtn" onclick="toggleMusic()">♫ Music</button>
+
+<audio id="music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PAGE 1 -->
+<section class="page active" id="p1">
+  <div class="moon">☾</div>
+  <div class="eyebrow">A LITTLE UNIVERSE, MADE FOR YOU</div>
+  <h1>The Secret Door</h1>
+  <p>লক্ষ লক্ষ তারার মাঝে, শুধু আপনার জন্য ছোট্ট একটা সারপ্রাইজ অপেক্ষা করছে।</p>
+  <button onclick="start()">Tap to Enter ✨</button>
+  <footer>A little world, made with care</footer>
+</section>
+
+<!-- PAGE 2 -->
+<section class="page" id="p2">
+  <div class="eyebrow">CHAPTER ONE</div>
+  <h1>Once Upon a Time</h1>
+  <div class="card">
+    <p>কখনো কখনো জীবনের সবচেয়ে সুন্দর গল্পগুলোর শুরুটা হয় একদম সাধারণভাবে।</p>
+    <p>আমাদের গল্পটাও ঠিক তেমনই। অনলাইনে পরিচয়, অল্প অল্প কথা, আর তারপর ধীরে ধীরে একজন মানুষের মনের মধ্যে বিশেষ জায়গা করে নেওয়া। 🤍</p>
+  </div>
+  <div class="nav">
+    <button onclick="go(1)">← Back</button>
+    <button onclick="go(3)">Next →</button>
+  </div>
+</section>
+
+<!-- PAGE 3 -->
+<section class="page" id="p3">
+  <div class="eyebrow">CHAPTER TWO</div>
+  <h1>A Special Person</h1>
+  <div class="heart">🤍</div>
+  <p>আপনাকে কখনো সামনে থেকে দেখিনি, পাশাপাশি হাঁটা হয়নি, তবুও আপনি আমার কাছে খুব চেনা একজন মানুষ।</p>
+  <p>কিছু মানুষ দূরে থেকেও মনের খুব কাছে চলে আসে। আপনি আমার কাছে তেমনই একজন। 🌙</p>
+  <div class="nav">
+    <button onclick="go(2)">← Back</button>
+    <button onclick="go(4)">Next →</button>
+  </div>
+</section>
+
+<!-- PAGE 4 -->
+<section class="page" id="p4">
+  <div class="eyebrow">A LITTLE MEMORY</div>
+  <h1>Our Little World</h1>
+  <div class="card">
+    <p>আমাদের একসঙ্গে কাটানো কোনো বাস্তব মুহূর্তের ছবি হয়তো নেই। কিন্তু কথা, অনুভূতি আর ছোট ছোট স্মৃতি দিয়ে মনের মধ্যে একটা আলাদা পৃথিবী তৈরি হয়ে গেছে।</p>
+    <p>সেই পৃথিবীর এই ছোট্ট পাতাটা শুধু আপনার জন্য। ✨</p>
+  </div>
+  <div class="nav">
+    <button onclick="go(3)">← Back</button>
+    <button onclick="go(5)">Next →</button>
+  </div>
+</section>
+
+<!-- PAGE 5 -->
+<section class="page" id="p5">
+  <div class="eyebrow">A WISH FOR YOU</div>
+  <h1>My Birthday Wish</h1>
+  <div class="flower">🌸</div>
+  <div class="card">
+    <p>আপনার জীবনের প্রতিটি সকাল সুন্দর হোক। আপনার মুখের হাসিটা যেন সবসময় এমনই থাকে।</p>
+    <p>যে স্বপ্নগুলো আপনি মনে মনে লালন করেন, সেগুলো একদিন সত্যি হোক। আপনার জীবনে শান্তি, আনন্দ আর ভালোবাসা ভরে উঠুক। 🤍</p>
+  </div>
+  <div class="nav">
+    <button onclick="go(4)">← Back</button>
+    <button onclick="go(6)">Next →</button>
+  </div>
+</section>
+
+<!-- PAGE 6 -->
+<section class="page" id="p6">
+  <div class="eyebrow">A LITTLE SECRET</div>
+  <h1>Something From My Heart</h1>
+  <div class="card">
+    <p>আপনাকে একটা কথা বলতে চাই।</p>
+    <button onclick="revealNote()">Open My Note 💌</button>
+    <div id="note" class="hidden">
+      <p>আপনি আমার জীবনের এমন একজন মানুষ, যাকে চেনার পর বুঝেছি—দূরত্ব থাকলেই যে অনুভূতি কম হবে, এমন নয়।</p>
+      <p>আপনার ভালো থাকা আমার কাছে সত্যিই গুরুত্বপূর্ণ। 🫶🏻</p>
+    </div>
+  </div>
+  <div class="nav">
+    <button onclick="go(5)">← Back</button>
+    <button onclick="go(7)">Next →</button>
+  </div>
+</section>
+
+<!-- PAGE 7 -->
+<section class="page" id="p7">
+  <div class="eyebrow">A MESSAGE FROM ME</div>
+  <h1>Just For You 🎧</h1>
+  <div class="card">
+    <p>এই ছোট্ট কথাগুলো আপনার জন্য নিজের কণ্ঠে রেকর্ড করেছি।</p>
+    <p class="small">শুনতে নিচের বোতামে চাপ দিন।</p>
+
+    <audio
+      id="voice"
+      controls
+      preload="metadata"
+      style="width:100%;margin-top:15px"
+      onloadedmetadata="this.volume=0.70">
+      <source src="audio.mp3" type="audio/mpeg">
+    </audio>
+
+    <p class="small">Happy birthday, my love of life. Apnar jonno chotto prochesta... asha kori bhalo lagbe.</p>
+  </div>
+  <div class="nav">
+    <button onclick="go(6)">← Back</button>
+    <button onclick="go(8)">Next →</button>
+  </div>
+</section>
+
+<!-- PAGE 8 -->
+<section class="page" id="p8">
+  <div class="eyebrow">WORDS I SAVED FOR YOU</div>
+  <h1>A Letter From My Heart</h1>
+  <div class="card">
+    <p>এই চিঠিতে আমার মনের কিছু কথা রাখা আছে। সময় নিয়ে পড়বেন। 🤍</p>
+    <button onclick="openLetter()">Read My Letter 💌</button>
+
+    <div id="letterWrap" class="hidden">
+      <div id="letter">শুভ জন্মদিন আমার সবচেয়ে প্রিয় মানুষ। 🤍🎂
+আমাদের পরিচয়ের পর এটাই আপনার সাথে আমার প্রথম জন্মদিন। অনলাইনে আপনার সাথে পরিচয় হয়েছিল। তখন তো জানতাম না, একজন মানুষকে কখনো সামনে থেকে না দেখেও এতটা আপন মনে হতে পারে। জানতাম না, একটা অনলাইন পরিচয় একদিন আমার মনের এতটা জায়গা জুড়ে বসবে। 🥹
+আজ আমাদের পরিচয়ের পর এতটা সময় পেরিয়ে গেছে। এই সময়ের মধ্যে আপনার সাথে আমার দেখা হয়নি, পাশাপাশি হাঁটা হয়নি, আপনার চোখের দিকে তাকিয়ে কথা বলা হয়নি। তবুও অদ্ভুতভাবে আপনি আমার খুব চেনা একজন মানুষ হয়ে গেছেন। আমার অনেক ভাবনার মাঝে, অনেক ভালো লাগার মুহূর্তে, কখনো কখনো অকারণ মন খারাপের সময়েও আপনি কোথাও না কোথাও জড়িয়ে থাকেন। 🌸
+আপনাকে আমি ঠিক কীভাবে অনুভব করি, সেটা হয়তো শব্দ দিয়ে কখনো পুরোপুরি বোঝাতে পারব না। কিছু অনুভূতি থাকে, যেগুলো বলা যায় না, শুধু খুব যত্ন করে মনের মধ্যে রেখে দিতে হয়। আপনি আমার কাছে ঠিক তেমনই একজন। 🖤
+আপনার জন্মদিনে তাই খুব বেশি কিছু চাইব না। শুধু চাই, জীবন আপনার প্রতি একটু কোমল হোক। আপনার মুখের হাসিটা যেন কোনোদিন মলিন না হয়। 😊 আপনার সব অপূর্ণ ইচ্ছে একদিন পূর্ণতা পাক। আপনি যেসব স্বপ্ন কাউকে না বলে নিজের মধ্যে লুকিয়ে রাখেন, সেগুলোরও যেন একদিন সুন্দর একটা ঠিকানা হয়। ✨
+আর নিজের জন্য একটা ছোট্ট চাওয়া আছে। জীবন যত দূরেই নিয়ে যাক, আপনি যেন কোনো এক কোণে আমাকে মনে রাখেন। 🫶🏻
+হয়তো আমাদের গল্পের ভবিষ্যৎ আমি জানি না, আমাদের দেখা হবে কি না সেটাও জানি না। কিন্তু একটা ব্যাপার জানি, আপনাকে চেনা আমার জীবনের খুব সুন্দর একটা অনুভূতি হয়ে থাকবে। 🤍
+আপনি জানেন কি, কিছু মানুষকে ভালো লাগার জন্য তাদের পাশে থাকা লাগে না। শুধু তাদের অস্তিত্বটাই যথেষ্ট। আপনি আমার কাছে ঠিক তেমন। 🌙
+শুভ জন্মদিন, আমার প্রিয় মানুষ। 🖤🎂
+আপনি ভালো থাকুন। খুব ভালো থাকুন। 🌷 আর যদি কোনোদিন মনে হয়, পৃথিবীর কোথাও একজন মানুষ নিঃশব্দে আপনার ভালো থাকা চেয়েছিল, তাহলে মনে করবেন, সে আমি। 🤍
+আপনার প্রিয়তমা 🫶🏻</div>
+    </div>
+  </div>
+
+  <div class="nav">
+    <button onclick="go(7)">← Back</button>
+    <button onclick="go(9)">Next →</button>
+  </div>
+</section>
+
+<!-- PAGE 9 -->
+<section class="page" id="p9">
+  <div class="eyebrow">A THOUSAND LITTLE STARS</div>
+  <h1>For Your Dreams ✨</h1>
+  <div class="card">
+    <p>আপনার প্রতিটি স্বপ্নের পাশে যেন নতুন আশার আলো থাকে। কঠিন দিনগুলোও একসময় সহজ হয়ে আসুক।</p>
+    <p>আপনি যা হতে চান, যা পেতে চান, সেদিকে এগিয়ে যাওয়ার সাহস আর শক্তি যেন সবসময় পান।</p>
+  </div>
+  <div class="nav">
+    <button onclick="go(8)">← Back</button>
+    <button onclick="go(10)">Next →</button>
+  </div>
+</section>
+
+<!-- PAGE 10 -->
+<section class="page" id="p10">
+  <div class="eyebrow">A SMALL PROMISE</div>
+  <h1>One Little Promise</h1>
+  <div class="heart">🌙</div>
+  <div class="card">
+    <p>দূরত্ব যতই থাকুক, আজকের এই ছোট্ট আয়োজনের মধ্যে আমার আন্তরিকতা আর আপনার জন্য শুভকামনা রয়ে গেল।</p>
+    <p>এই জন্মদিনের স্মৃতিটুকু আপনার মুখে একটু হলেও হাসি আনুক। এটাই আমার চাওয়া। 🤍</p>
+  </div>
+  <div class="nav">
+    <button onclick="go(9)">← Back</button>
+    <button onclick="go(11)">Next →</button>
+  </div>
+</section>
+
+<!-- PAGE 11 -->
+<section class="page" id="p11">
+  <div class="eyebrow">ONE LAST SURPRISE</div>
+  <h1>Your Little Gift</h1>
+  <p>আপনার জন্য রাখা শেষ ছোট্ট সারপ্রাইজটি খুলে দেখুন। 🎁</p>
+  <div id="giftBox" onclick="openGift()">🎁</div>
+
+  <div id="giftMessage" class="hidden card">
+    <h2>For You 🤍</h2>
+    <p>আমার পক্ষ থেকে আপনার জন্য এক আকাশ শুভকামনা, এক সমুদ্র ভালো থাকা আর অনেক অনেক হাসি।</p>
+  </div>
+
+  <div class="nav">
+    <button onclick="go(10)">← Back</button>
+    <button onclick="go(12)">Final Page →</button>
+  </div>
+</section>
+
+<!-- PAGE 12 -->
+<section class="page" id="p12">
+  <div class="moon">🌌</div>
+  <div class="eyebrow">THE END, BUT NOT THE FEELING</div>
+  <h1>Happy Birthday 🤍</h1>
+
+  <div class="card">
+    <p>শুভ জন্মদিন, আমার সবচেয়ে প্রিয় মানুষ।</p>
+    <p>আপনার নতুন বছরটা সুন্দর হোক। আপনার জীবনে এমন অনেক মুহূর্ত আসুক, যেগুলো মনে পড়লে আপনি হাসবেন।</p>
+    <p>দূরে কোথাও একজন মানুষ আজ আপনার জন্য মন থেকে দোয়া করছে আপনি যেন সবসময় ভালো থাকেন। 🌷</p>
+    <p>ভালো থাকবেন, খুব ভালো থাকবেন।</p>
+    <div class="heart">🤍</div>
+    <p class="small">Made with love, just for you.</p>
+  </div>
+
+  <button onclick="go(1)">Replay from Beginning ↺</button>
+</section>
+
+<script>
+let currentPage = 1;
+
+function go(n) {
+  document.querySelectorAll('.page').forEach(p => {
+    p.classList.remove('active');
+  });
+
+  document.getElementById('p' + n).classList.add('active');
+  currentPage = n;
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+
+function start() {
+  go(2);
+}
+
+function revealNote() {
+  document.getElementById('note').classList.remove('hidden');
+}
+
+function openLetter() {
+  document.getElementById('letterWrap').classList.remove('hidden');
+}
+
+function openGift() {
+  document.getElementById('giftMessage').classList.remove('hidden');
+  document.getElementById('giftBox').textContent = '💝';
+}
+
+// Background music volume: 20%
+let musicOn = false;
+
+function toggleMusic() {
+  const music = document.getElementById('music');
+  const btn = document.getElementById('musicBtn');
+
+  music.volume = 0.20;
+
+  if (!musicOn) {
+    music.play().then(() => {
+      musicOn = true;
+      btn.textContent = '♫ Music: On';
+    }).catch(() => {
+      btn.textContent = '♫ Music';
+      alert('মিউজিক চালাতে music.mp3 ফাইলটি index.html ফাইলের সঙ্গে একই ফোল্ডারে যোগ করতে হবে।');
+    });
+  } else {
+    music.pause();
+    musicOn = false;
+    btn.textContent = '♫ Music';
+  }
+}
+
+// Voice audio volume: 70%
+const voiceAudio = document.getElementById('voice');
+
+voiceAudio.volume = 0.70;
+
+voiceAudio.addEventListener('loadedmetadata', function() {
+  voiceAudio.volume = 0.70;
+});
+
+// Starry sky animation
+const canvas = document.getElementById('stars');
+const ctx = canvas.getContext('2d');
+let starList = [];
+
+function resizeStars() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  starList = [];
+
+  for (let i = 0; i < 120; i++) {
+    starList.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.8 + 0.3,
+      a: Math.random() * 6.28,
+      speed: Math.random() * 0.02 + 0.004
+    });
+  }
+}
+
+function drawStars() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  for (const s of starList) {
+    s.a += s.speed;
+
+    const alpha = 0.35 + (Math.sin(s.a) + 1) * 0.3;
+
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(225,235,255,' + alpha + ')';
+    ctx.fill();
+  }
+
+  requestAnimationFrame(drawStars);
+}
+
+window.addEventListener('resize', resizeStars);
+
+resizeStars();
+drawStars();
+</script>
+
+</body>
+</html>
